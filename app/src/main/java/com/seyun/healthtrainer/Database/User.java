@@ -20,4 +20,5 @@ public class User extends RealmObject {
     public void   setAge(int age) { this.age = age; }
     public int    getSessionId() { return sessionId; }
     public void   setSessionId(int sessionId) { this.sessionId = sessionId; }
+
 }

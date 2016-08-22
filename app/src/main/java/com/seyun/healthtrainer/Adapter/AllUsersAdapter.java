@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.seyun.healthtrainer.Model.FirstFragmentModel;
@@ -31,6 +32,7 @@ public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.UserVi
     public void onBindViewHolder(UserViewHolder holder, int position) {
         FirstFragmentModel user = userList.get(position);
         holder.text.setText(user.getTitle());
+        holder.img.setImageResource(user.getImg());
     }
 
     @Override
@@ -40,9 +42,11 @@ public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.UserVi
 
     public static class UserViewHolder extends RecyclerView.ViewHolder {
         TextView text;
+        ImageView img;
         public UserViewHolder(View itemView) {
             super(itemView);
             text = (TextView) itemView.findViewById(R.id.info_text);
+            img = (ImageView) itemView.findViewById(R.id.card_img);
         }
     }
 }

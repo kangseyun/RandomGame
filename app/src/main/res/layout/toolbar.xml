@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="left|center"
-            android:text="title"
+            android:text="친구야 술먹자 [1 회]"
+            android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:textSize="20dp"/>
     </android.support.v7.widget.Toolbar>

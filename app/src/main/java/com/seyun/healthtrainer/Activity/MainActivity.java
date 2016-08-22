@@ -1,10 +1,6 @@
 package com.seyun.healthtrainer.Activity;
 
-
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.seyun.healthtrainer.Adapter.Pager;
 import com.seyun.healthtrainer.R;
@@ -23,6 +18,7 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
     private ViewPager viewPager;
     private TabLayout tabLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +49,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void tabLayoutBind() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        TextView toolbar_title = (TextView) findViewById(R.id.toolbar_title);
-        toolbar_title.setText("탐지시스템");
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

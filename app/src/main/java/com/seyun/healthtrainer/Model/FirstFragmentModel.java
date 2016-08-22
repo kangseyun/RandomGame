@@ -5,12 +5,17 @@ package com.seyun.healthtrainer.Model;
  */
 public class FirstFragmentModel {
     private String title;
-
+    private int img;
     public String getTitle() {
         return title;
     }
 
-    public FirstFragmentModel(String title) {
+    public int getImg() {
+        return img;
+    }
+
+    public FirstFragmentModel(String title, int img) {
         this.title = title;
+        this.img = img;
     }
 }

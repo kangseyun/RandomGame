@@ -1,11 +1,9 @@
 package com.seyun.healthtrainer.Fragment;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,10 +43,10 @@ public class FirstFragment extends Fragment {
     private List<FirstFragmentModel> getUserInformation() {
 
         List<FirstFragmentModel> userList = new ArrayList<>();
-        userList.add(new FirstFragmentModel("베스킨라베스"));
-        userList.add(new FirstFragmentModel("눈치게임"));
-        userList.add(new FirstFragmentModel("제비뽑기"));
-        userList.add(new FirstFragmentModel("사다리타기"));
+        userList.add(new FirstFragmentModel("베스킨라베스", R.drawable.ice));
+        userList.add(new FirstFragmentModel("눈치게임", R.drawable.img1));
+        userList.add(new FirstFragmentModel("제비뽑기", R.drawable.img2));
+        userList.add(new FirstFragmentModel("사다리타기", R.drawable.img3));
 
         return userList;
     }
