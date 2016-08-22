@@ -13,5 +13,4 @@ public class FirstFragmentModel {
     public FirstFragmentModel(String emailId) {
         this.emailId = emailId;
     }
-
 }

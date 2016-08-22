@@ -44,10 +44,10 @@ public class FirstFragment extends Fragment {
     private List<FirstFragmentModel> getUserInformation() {
 
         List<FirstFragmentModel> userList = new ArrayList<>();
-        userList.add(new FirstFragmentModel("SETTING"));
-        userList.add(new FirstFragmentModel("SETTING"));
-        userList.add(new FirstFragmentModel("SETTING"));
-        userList.add(new FirstFragmentModel("SETTING"));
+        userList.add(new FirstFragmentModel("베스킨라베스"));
+        userList.add(new FirstFragmentModel("눈치게임"));
+        userList.add(new FirstFragmentModel("제비뽑기"));
+        userList.add(new FirstFragmentModel("사다리타기"));
 
         return userList;
     }
