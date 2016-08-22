@@ -4,13 +4,13 @@ package com.seyun.healthtrainer.Model;
  * Created by vcs-server on 8/15/16.
  */
 public class FirstFragmentModel {
-    private String emailId;
+    private String title;
 
-    public String getEmailId() {
-        return emailId;
+    public String getTitle() {
+        return title;
     }
 
-    public FirstFragmentModel(String emailId) {
-        this.emailId = emailId;
+    public FirstFragmentModel(String title) {
+        this.title = title;
     }
 }

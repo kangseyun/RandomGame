@@ -5,10 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.seyun.healthtrainer.Fragment.FirstFragment;
 import com.seyun.healthtrainer.Model.FirstFragmentModel;
 import com.seyun.healthtrainer.R;
 
@@ -25,16 +23,14 @@ public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.UserVi
 
     @Override
     public UserViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.card, null);
-        UserViewHolder userViewHolder = new UserViewHolder(view);
-        return userViewHolder;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card, parent, false);
+        return new UserViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(UserViewHolder holder, int position) {
         FirstFragmentModel user = userList.get(position);
-
-        holder.text.setText(user.getEmailId());
+        holder.text.setText(user.getTitle());
     }
 
     @Override
@@ -43,7 +39,6 @@ public class AllUsersAdapter extends RecyclerView.Adapter<AllUsersAdapter.UserVi
     }
 
     public static class UserViewHolder extends RecyclerView.ViewHolder {
-
         TextView text;
         public UserViewHolder(View itemView) {
             super(itemView);
