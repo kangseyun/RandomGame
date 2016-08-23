@@ -52,7 +52,7 @@
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:textSize="17dp"
-                android:text="이 항목을 파티로 저장"/>
+                android:text="항목불러오기"/>
             <Button
                 android:id="@+id/select_member_btn_load"
                 style="@style/AlertDialog.AppCompat.Light"
@@ -63,7 +63,7 @@
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:textSize="17dp"
-                android:text="이 항목을 파티로 저장"/>
+                android:text="항목저장하기"/>
         </LinearLayout>
 
         <Button

@@ -5,9 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.seyun.healthtrainer.Adapter.SelectMemeberAdapter;
 import com.seyun.healthtrainer.Model.SelectMemberModel;
 import com.seyun.healthtrainer.R;
@@ -79,6 +81,16 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
                 finish();
                 break;
             case R.id.select_member_btn_save:
+                new MaterialDialog.Builder(this)
+                        .title("즐겨찾기")
+                        .content("입력하기")
+                        .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)
+                        .input("ㅅㄷㄴㅅ", "123123ㄴ", new MaterialDialog.InputCallback() {
+                            @Override
+                            public void onInput(MaterialDialog dialog, CharSequence input) {
+                                // Do something
+                            }
+                        }).show();
                 break;
             case R.id.select_member_btn_insert:
                 break;
