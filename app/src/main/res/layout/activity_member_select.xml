@@ -1,82 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/select_member_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.seyun.healthtrainer.Activity.MemberSelectActivity">
-    <include
-        layout="@layout/toolbar"
+    android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <LinearLayout android:layout_height="wrap_content"
-        android:layout_width="match_parent" >
-        <EditText
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <Button
-            android:id="@+id/select_member_btn_insert"
-            style="@style/AlertDialog.AppCompat.Light"
-            android:layout_width="75dp"
-            android:layout_height="match_parent"
-            android:background="#0091EA"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:text="추가"/>
-    </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/member_select_rv"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/cardview_dark_background"
-        android:layout_weight="1">
-
-    </android.support.v7.widget.RecyclerView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.seyun.healthtrainer.Activity.MemberSelectActivity">
+        <include
+            layout="@layout/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/select_member_btn_save"
-                style="@style/AlertDialog.AppCompat.Light"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout android:layout_height="wrap_content"
+            android:layout_width="match_parent" >
+            <EditText
                 android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+            <Button
+                android:id="@+id/select_member_btn_insert"
+                style="@style/AlertDialog.AppCompat.Light"
+                android:layout_width="75dp"
+                android:layout_height="match_parent"
                 android:background="#0091EA"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
-                android:textSize="17dp"
-                android:text="항목불러오기"/>
-            <Button
-                android:id="@+id/select_member_btn_load"
-                style="@style/AlertDialog.AppCompat.Light"
-                android:layout_width="wrap_content"
+                android:text="추가"/>
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/member_select_rv"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/cardview_dark_background"
+            android:layout_weight="1">
+
+        </android.support.v7.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/select_member_btn_load"
+                    style="@style/AlertDialog.AppCompat.Light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#0091EA"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="17dp"
+                    android:text="항목불러오기"/>
+                <Button
+                    android:id="@+id/select_member_btn_save"
+                    style="@style/AlertDialog.AppCompat.Light"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/colorAccent"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="17dp"
+                    android:text="항목저장하기"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/select_member_btn_start"
+                style="@style/AlertDialog.AppCompat.Light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00695C"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
                 android:textSize="17dp"
-                android:text="항목저장하기"/>
+                android:text="시작"/>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/select_member_btn_start"
-            style="@style/AlertDialog.AppCompat.Light"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#00695C"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:textSize="17dp"
-            android:text="시작"/>
+
     </LinearLayout>
-
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
