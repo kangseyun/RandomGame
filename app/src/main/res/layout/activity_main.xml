@@ -38,7 +38,24 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:src="@android:drawable/ic_dialog_dialer" />
+            android:src="@android:drawable/ic_dialog_dialer"
+            />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@android:drawable/ic_dialog_dialer"
+            android:visibility="gone"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_add_box_white_36dp"
+            android:visibility="gone"/>
     </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>

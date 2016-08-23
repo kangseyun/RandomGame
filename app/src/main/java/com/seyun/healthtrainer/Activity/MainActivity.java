@@ -15,9 +15,10 @@ import com.seyun.healthtrainer.R;
 
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, ViewPager.OnPageChangeListener{
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    private FloatingActionButton fab, fab2, fab3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabLayoutBind();
         setViewPager();
         floatingButtonBind();
+        fabBind();
     }
 
     void tabBind() {
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private void setViewPager() {
         viewPager = (ViewPager) findViewById(R.id.pager);
         Pager adapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setOnPageChangeListener(this);
         viewPager.setAdapter(adapter);
     }
 
@@ -68,6 +71,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     }
 
+    private void fabBind() {
+        // fab Bind
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab3 = (FloatingActionButton) findViewById(R.id.fab3);
+    }
+
     private void floatingButtonBind() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
+        animateFab(tab.getPosition());
     }
 
     @Override
@@ -98,5 +109,42 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             finish();
         }
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    private void animateFab(int position) {
+        switch (position) {
+            case 0:
+                fab.show();
+                fab2.hide();
+                fab3.hide();
+                break;
+            case 1:
+                fab.hide();
+                fab2.hide();
+                fab3.hide();
+                break;
+            case 2:
+                fab3.show();
+                fab.hide();
+                fab2.hide();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        animateFab(position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
