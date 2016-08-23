@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.seyun.healthtrainer.Adapter.SelectMemeberAdapter;
@@ -27,6 +28,7 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Button insert, save, start, load;
+    private EditText name;
     private CoordinatorLayout layout;
 
     @Override
@@ -39,24 +41,26 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
     private void init() {
         layoutBind();
         recyclerViewBind();
+        toolbarBind();
     }
 
     private void layoutBind() {
-        // btn bind
         insert = (Button) findViewById(R.id.select_member_btn_insert);
         save = (Button) findViewById(R.id.select_member_btn_save);
         start = (Button) findViewById(R.id.select_member_btn_start);
         load = (Button) findViewById(R.id.select_member_btn_load);
+        name = (EditText) findViewById(R.id.select_member_et_name);
+        layout = (CoordinatorLayout) findViewById(R.id.select_member_layout);
+
         insert.setOnClickListener(this);
         save.setOnClickListener(this);
         start.setOnClickListener(this);
         load.setOnClickListener(this);
+    }
 
-        // layout bind
-        layout = (CoordinatorLayout) findViewById(R.id.select_member_layout);
-
-        //toolbar bind
+    private void toolbarBind() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("파티원 구성");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -122,20 +126,8 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
                         .show();
                 break;
             case R.id.select_member_btn_insert:
-                new MaterialDialog.Builder(this)
-                        .title("인원추가")
-                        .content("이름을 입력해주세요")
-                        .negativeText(android.R.string.cancel)
-                        .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_NULL)
-                        .input(null, null, new MaterialDialog.InputCallback() {
-                            @Override
-                            public void onInput(MaterialDialog dialog, CharSequence input) {
-                                Snackbar snackbar = Snackbar
-                                        .make(layout, input+"님 추가완료.", Snackbar.LENGTH_LONG);
-
-                                snackbar.show();
-                            }
-                        }).show();
+                Log.i("GET!!",name.getText().toString());
+                name.setText(null);
                 break;
             default:
                 break;
