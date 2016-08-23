@@ -35,14 +35,13 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         exitBtn.setOnClickListener(this);
     }
 
-
     @Override
     public void onClick(View view) {
         int id = view.getId();
         Intent i = null;
         switch (id) {
             case R.id.MainMenuButton_start:
-                i = new Intent(this, MainActivity.class);
+                i = new Intent(this, MemberSelectActivity.class);
                 break;
             case R.id.MainMenuButton_continue:
                 i = new Intent(this, MainActivity.class);

@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("Float", "float");
             }
         });
     }

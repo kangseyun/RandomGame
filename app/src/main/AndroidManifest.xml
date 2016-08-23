@@ -14,10 +14,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>   app:theme="@style/ThemeOverlay.AppCompat.Light"
-
-        <activity android:name=".Activity.MainActivity"></activity>
-        <activity android:name=".Activity.MainMenuActivity"></activity>
+        </activity>
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.MainMenuActivity" />
+        <activity android:name=".Activity.MemberSelectActivity"></activity>
     </application>
 
 </manifest>
