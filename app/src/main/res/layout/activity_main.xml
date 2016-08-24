@@ -20,6 +20,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/main_layout"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -57,5 +58,13 @@
             android:src="@drawable/ic_add_box_white_36dp"
             android:visibility="gone"/>
     </android.support.design.widget.CoordinatorLayout>
+    <android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/fragment1_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
+
+

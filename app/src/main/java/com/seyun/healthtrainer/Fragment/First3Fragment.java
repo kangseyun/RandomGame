@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.seyun.healthtrainer.Adapter.Fragment3Adapter;
-import com.seyun.healthtrainer.Model.FirstFragmentModel;
 import com.seyun.healthtrainer.Model.Fragment3Model;
 import com.seyun.healthtrainer.R;
 

@@ -18,6 +18,7 @@
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.MainMenuActivity" />
         <activity android:name=".Activity.MemberSelectActivity"></activity>
+        <activity android:name=".Activity.ContinueActivity"></activity>
     </application>
 
 </manifest>

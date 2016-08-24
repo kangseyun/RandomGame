@@ -1,10 +1,10 @@
 package com.seyun.healthtrainer.Activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -84,22 +84,29 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
     private List<SelectMemberModel> getUserInformation() {
 
         List<SelectMemberModel> userList = new ArrayList<>();
-        userList.add(new SelectMemberModel(true, "강세윤"));
-        userList.add(new SelectMemberModel(true, "김대준"));
-        userList.add(new SelectMemberModel(true, "박주찬"));
-        userList.add(new SelectMemberModel(true, "이재일"));
         return userList;
     }
 
     @Override
     public void onClick(View view) {
         int id = view.getId();
-
         switch (id) {
             case R.id.select_member_btn_start:
-                Intent i = new Intent(this, MainActivity.class);
-                startActivity(i);
-                finish();
+                new MaterialDialog.Builder(this)
+                        .title("파티이름 등록")
+                        .content("이번 파티이름을 등록해주세요")
+                        .negativeText(android.R.string.cancel)
+                        .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_NULL)
+                        .input(null, "친구야술먹자", new MaterialDialog.InputCallback() {
+                            @Override
+                            public void onInput(MaterialDialog dialog, CharSequence input) {
+                                String name = input.toString();
+                                Intent i = new Intent(MemberSelectActivity.this, MainActivity.class);
+                                startActivity(i);
+                                finish();
+                            }
+                        })
+                        .show();
                 break;
             case R.id.select_member_btn_save:
                 new MaterialDialog.Builder(this)

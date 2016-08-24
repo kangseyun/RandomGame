@@ -1,24 +1,30 @@
 package com.seyun.healthtrainer.Activity;
 
+import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.seyun.healthtrainer.Adapter.Pager;
+import com.seyun.healthtrainer.Model.SelectMemberModel;
 import com.seyun.healthtrainer.R;
 
-import butterknife.ButterKnife;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, ViewPager.OnPageChangeListener{
     private ViewPager viewPager;
     private TabLayout tabLayout;
     private FloatingActionButton fab, fab2, fab3;
+    private CoordinatorLayout layout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +34,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     void init() {
-        ButterKnife.bind(this);
-        tabBind();
+        layout = (CoordinatorLayout) findViewById(R.id.main_layout);
         tabLayoutBind();
+        tabBind();
         setViewPager();
         floatingButtonBind();
         fabBind();
@@ -53,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private void tabLayoutBind() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
@@ -78,11 +83,33 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         fab3 = (FloatingActionButton) findViewById(R.id.fab3);
     }
 
+
+    private List<SelectMemberModel> getUserInformation() {
+
+        List<SelectMemberModel> userList = new ArrayList<>();
+        userList.add(new SelectMemberModel(false,"123"));
+        return userList;
+    }
+
     private void floatingButtonBind() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab3 = (FloatingActionButton) findViewById(R.id.fab3);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+            }
+        });
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                new MaterialDialog.Builder(view.getContext())
+//                        .title("즐겨찾기 추가")
+//                        .content("즐겨찾기 이름을 입력해주세요. " +
+//                                "(현재인원을 동시에불러오실수있습니다.)")
+//                        .negativeText(android.R.string.cancel)
+//                        .show();
+                Snackbar.make(layout, "Hello World", Snackbar.LENGTH_LONG).show();
             }
         });
     }
@@ -137,7 +164,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
     }
-
     @Override
     public void onPageSelected(int position) {
         animateFab(position);

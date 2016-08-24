@@ -1,4 +1,5 @@
 package com.seyun.healthtrainer.Fragment;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,8 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-import com.seyun.healthtrainer.Adapter.AllUsersAdapter;
+import com.seyun.healthtrainer.Adapter.Fragment1Adapter;
 import com.seyun.healthtrainer.Model.FirstFragmentModel;
 import com.seyun.healthtrainer.R;
 
@@ -34,11 +34,12 @@ public class FirstFragment extends Fragment {
 
 
         // specify an adapter (see also next example)
-        mAdapter = new AllUsersAdapter(getUserInformation(), context);
+        mAdapter = new Fragment1Adapter(getUserInformation(), context);
         mRecyclerView.setAdapter(mAdapter);
-
         return view;
     }
+
+
 
     private List<FirstFragmentModel> getUserInformation() {
 

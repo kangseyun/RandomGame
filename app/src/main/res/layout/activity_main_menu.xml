@@ -7,8 +7,8 @@
     tools:context="com.seyun.healthtrainer.Activity.MainMenuActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="3">
+        android:layout_height="200dp"
+        android:layout_weight="10">
         <ImageView
             android:id="@+id/MainMenuImageView"
             android:layout_width="match_parent"
@@ -42,17 +42,6 @@
             android:text="continue"
             android:textColor="#FFFFFF"
             android:textSize="@dimen/MainMenuActivity_Button_size"
-
-            />
-        <Button
-            android:id="@+id/MainMenuButton_setting"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#795548"
-            android:text="SETTING"
-            android:textSize="@dimen/MainMenuActivity_Button_size"
-            android:textColor="#FFFFFF"
 
             />
         <Button

@@ -1,0 +1,78 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    >
+    <android.support.v7.widget.CardView
+        android:id="@+id/continu_card"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="7dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/continue_title"
+                    android:text="(2015-01-23) 친구야술먹자"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="#9E9E9E"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+                <Button
+                    android:id="@+id/continue_btn_delete"
+                    android:layout_width="50dp"
+                    android:background="#FFFFFF"
+                    android:layout_height="30dp"
+                    android:text="삭제"
+                    android:textColor="#333333"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="#00695C"
+                android:paddingTop="2dp"
+                android:layout_marginBottom="5dp">
+                <Button
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:id="@+id/continue_sum1"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:background="#0091EA"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="결제 금액: 5000"
+                    android:layout_height="30dp" />
+                <Button
+                    android:id="@+id/continue_sum2"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:background="#00BFA5"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="미청산 금액: 3000"
+                    android:layout_height="30dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
