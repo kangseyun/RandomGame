@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.seyun.healthtrainer.Model.ContinueModel;
 import com.seyun.healthtrainer.Model.SelectMemberModel;
 import com.seyun.healthtrainer.R;
 
@@ -31,8 +32,13 @@ public class SelectMemeberAdapter extends RecyclerView.Adapter<SelectMemeberAdap
     @Override
     public void onBindViewHolder(UserViewHolder holder, int position) {
         SelectMemberModel user = userList.get(position);
-        holder.check.isChecked();
+        holder.check.setChecked(true);
         holder.name.setText(user.getName());
+    }
+
+    public void add(SelectMemberModel item, int position) {
+        userList.add(position, item);
+        notifyItemInserted(position);
     }
 
     @Override

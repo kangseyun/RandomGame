@@ -36,6 +36,11 @@ public class ContinueAdapter extends RecyclerView.Adapter<ContinueAdapter.UserVi
         holder.sum2.setText(user.getSum2());
     }
 
+    public void add(ContinueModel item, int position) {
+        userList.add(position, item);
+        notifyItemInserted(position);
+    }
+
     @Override
     public int getItemCount() {
         return userList.size();

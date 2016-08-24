@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ContinueActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private ContinueAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private TextView title;
     @Override
@@ -47,13 +47,9 @@ public class ContinueActivity extends AppCompatActivity {
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-
         // specify an adapter (see also next example)
         mAdapter = new ContinueAdapter(getUserInformation(), this);
-
         mRecyclerView.setAdapter(mAdapter);
-
 
     }
 
@@ -61,18 +57,6 @@ public class ContinueActivity extends AppCompatActivity {
     private List<ContinueModel> getUserInformation() {
 
         List<ContinueModel> userList = new ArrayList<>();
-        userList.add(new ContinueModel("2016-05-06 서천친구들", "150000", "100000"));
-        userList.add(new ContinueModel("2016-05-03 서천친구들", "150000", "100000"));
-        userList.add(new ContinueModel("베스킨라베스", "150000", "100000"));
-        userList.add(new ContinueModel("베스킨라베스", "150000", "100000"));
-        userList.add(new ContinueModel("베스킨라베스", "150000", "100000"));
-        userList.add(new ContinueModel("베스킨라베스", "150000", "100000"));
-        userList.add(new ContinueModel("베스킨라베스", "150000", "100000"));
-        userList.add(new ContinueModel("베스킨라베스", "150000", "100000"));
-        userList.add(new ContinueModel("베스킨라베스", "150000", "100000"));
-        userList.add(new ContinueModel("베스킨라베스", "150000", "100000"));
-        userList.add(new ContinueModel("베스킨라베스", "150000", "100000"));
-
         return userList;
     }
 

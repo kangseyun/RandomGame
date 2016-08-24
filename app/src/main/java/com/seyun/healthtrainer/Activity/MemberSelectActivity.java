@@ -17,20 +17,27 @@ import android.widget.EditText;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.seyun.healthtrainer.Adapter.SelectMemeberAdapter;
+import com.seyun.healthtrainer.Database.User;
 import com.seyun.healthtrainer.Model.SelectMemberModel;
 import com.seyun.healthtrainer.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
+
 public class MemberSelectActivity extends AppCompatActivity implements View.OnClickListener {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private SelectMemeberAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Button insert, save, start, load;
     private EditText name;
     private CoordinatorLayout layout;
-
+    private User user;
+    private Realm realm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +49,7 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
         layoutBind();
         recyclerViewBind();
         toolbarBind();
+
     }
 
     private void layoutBind() {
@@ -117,8 +125,7 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
                         .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_NULL)
                         .input(null, null, new MaterialDialog.InputCallback() {
                             @Override
-                            public void onInput(MaterialDialog dialog, CharSequence input) {
-                                Snackbar.make(layout, input+"님 추가완료.", Snackbar.LENGTH_LONG).show();
+                            public void onInput(MaterialDialog dialog, final CharSequence input) {
                             }
                         })
                         .show();
@@ -133,7 +140,7 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
                         .show();
                 break;
             case R.id.select_member_btn_insert:
-                Log.i("GET!!",name.getText().toString());
+                mAdapter.add(new SelectMemberModel(false, name.getText().toString()),0);
                 name.setText(null);
                 break;
             default:

@@ -7,7 +7,6 @@ import io.realm.annotations.Ignore;
  * Created by vcs-server on 8/19/16.
  */
 public class User extends RealmObject {
-
     private String          name;
     private int             age;
 
