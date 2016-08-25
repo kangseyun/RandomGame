@@ -38,6 +38,7 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
     private CoordinatorLayout layout;
     private User user;
     private Realm realm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,6 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
         layoutBind();
         recyclerViewBind();
         toolbarBind();
-
     }
 
     private void layoutBind() {
@@ -81,8 +81,6 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-
-        // specify an adapter (see also next example)
         mAdapter = new SelectMemeberAdapter(getUserInformation(), this);
         mRecyclerView.setAdapter(mAdapter);
 
@@ -100,48 +98,16 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
         int id = view.getId();
         switch (id) {
             case R.id.select_member_btn_start:
-                new MaterialDialog.Builder(this)
-                        .title("파티이름 등록")
-                        .content("이번 파티이름을 등록해주세요")
-                        .negativeText(android.R.string.cancel)
-                        .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_NULL)
-                        .input(null, "친구야술먹자", new MaterialDialog.InputCallback() {
-                            @Override
-                            public void onInput(MaterialDialog dialog, CharSequence input) {
-                                String name = input.toString();
-                                Intent i = new Intent(MemberSelectActivity.this, MainActivity.class);
-                                startActivity(i);
-                                finish();
-                            }
-                        })
-                        .show();
+                clickStartBtn();
                 break;
             case R.id.select_member_btn_save:
-                new MaterialDialog.Builder(this)
-                        .title("즐겨찾기 추가")
-                        .content("즐겨찾기 이름을 입력해주세요. " +
-                                "(현재인원을 동시에불러오실수있습니다.)")
-                        .negativeText(android.R.string.cancel)
-                        .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_NULL)
-                        .input(null, null, new MaterialDialog.InputCallback() {
-                            @Override
-                            public void onInput(MaterialDialog dialog, final CharSequence input) {
-                            }
-                        })
-                        .show();
+                clickSaveBtn();
                 break;
             case R.id.select_member_btn_load:
-                new MaterialDialog.Builder(this)
-                        .title("즐겨찾기 목록")
-                        .content("불러오실 즐겨찾기 항목을 체크해주세요")
-                        .negativeText(android.R.string.cancel)
-                        .positiveText(android.R.string.ok)
-                        .adapter(mAdapter, null)
-                        .show();
+                clickLoadBtn();
                 break;
             case R.id.select_member_btn_insert:
-                mAdapter.add(new SelectMemberModel(false, name.getText().toString()),0);
-                name.setText(null);
+                clickInsertBtn();
                 break;
             default:
                 break;
@@ -154,5 +120,53 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
             finish();
         }
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    private void clickStartBtn(){
+        new MaterialDialog.Builder(this)
+                .title("파티이름 등록")
+                .content("이번 파티이름을 등록해주세요")
+                .negativeText(android.R.string.cancel)
+                .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_NULL)
+                .input(null, "친구야술먹자", new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                        String name = input.toString();
+                        Intent i = new Intent(MemberSelectActivity.this, MainActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                })
+                .show();
+    }
+
+    private void clickSaveBtn() {
+        new MaterialDialog.Builder(this)
+                .title("즐겨찾기 추가")
+                .content("즐겨찾기 이름을 입력해주세요. " +
+                        "(현재인원을 동시에불러오실수있습니다.)")
+                .negativeText(android.R.string.cancel)
+                .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_NULL)
+                .input(null, null, new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(MaterialDialog dialog, final CharSequence input) {
+                    }
+                })
+                .show();
+    }
+
+    private void clickLoadBtn() {
+        new MaterialDialog.Builder(this)
+                .title("즐겨찾기 목록")
+                .content("불러오실 즐겨찾기 항목을 체크해주세요")
+                .negativeText(android.R.string.cancel)
+                .positiveText(android.R.string.ok)
+                .adapter(mAdapter, null)
+                .show();
+    }
+
+    private void clickInsertBtn() {
+        mAdapter.add(new SelectMemberModel(false, name.getText().toString()),0);
+        name.setText(null);
     }
 }

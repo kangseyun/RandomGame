@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.seyun.healthtrainer.Adapter.Pager;
 import com.seyun.healthtrainer.Model.SelectMemberModel;
 import com.seyun.healthtrainer.R;
@@ -103,12 +104,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                new MaterialDialog.Builder(view.getContext())
-//                        .title("즐겨찾기 추가")
-//                        .content("즐겨찾기 이름을 입력해주세요. " +
-//                                "(현재인원을 동시에불러오실수있습니다.)")
-//                        .negativeText(android.R.string.cancel)
-//                        .show();
+                boolean wrapInScrollView = true;
+                new MaterialDialog.Builder(view.getContext())
+                        .title("123")
+                        .customView(R.layout.fragment_first, wrapInScrollView)
+                        .positiveText("123")
+                        .show();
                 Snackbar.make(layout, "Hello World", Snackbar.LENGTH_LONG).show();
             }
         });

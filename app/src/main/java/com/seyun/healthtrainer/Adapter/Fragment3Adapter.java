@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.seyun.healthtrainer.Model.Fragment3Model;
+import com.seyun.healthtrainer.Model.SelectMemberModel;
 import com.seyun.healthtrainer.R;
 
 import java.util.List;
@@ -33,6 +34,11 @@ public class Fragment3Adapter extends RecyclerView.Adapter<Fragment3Adapter.User
         holder.name.setText(user.getName());
         holder.sum1.setText(user.getSum1());
         holder.sum2.setText(user.getSum2());
+    }
+
+    public void add(Fragment3Model item, int position) {
+        userList.add(position, item);
+        notifyItemInserted(position);
     }
 
     @Override

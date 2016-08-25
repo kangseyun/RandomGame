@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.seyun.healthtrainer.Model.FirstFragmentModel;
+import com.seyun.healthtrainer.Model.Fragment3Model;
 import com.seyun.healthtrainer.R;
 
 import java.util.List;
@@ -42,7 +43,10 @@ public class Fragment1Adapter extends RecyclerView.Adapter<Fragment1Adapter.User
         return userList.size();
     }
 
-
+    public void add(FirstFragmentModel item, int position) {
+        userList.add(position, item);
+        notifyItemInserted(position);
+    }
     public static class UserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView text;
         private ImageView img;
