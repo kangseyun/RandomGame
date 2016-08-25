@@ -1,26 +1,32 @@
 package com.seyun.healthtrainer.Activity;
 
-
+import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.seyun.healthtrainer.Adapter.Pager;
+import com.seyun.healthtrainer.Model.SelectMemberModel;
 import com.seyun.healthtrainer.R;
 
-import butterknife.ButterKnife;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+
+public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, ViewPager.OnPageChangeListener{
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    private FloatingActionButton fab, fab2, fab3;
+    private CoordinatorLayout layout;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +35,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     void init() {
-        ButterKnife.bind(this);
-        tabBind();
+        layout = (CoordinatorLayout) findViewById(R.id.main_layout);
         tabLayoutBind();
+        tabBind();
         setViewPager();
         floatingButtonBind();
+        fabBind();
     }
 
     void tabBind() {
@@ -46,13 +53,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private void setViewPager() {
         viewPager = (ViewPager) findViewById(R.id.pager);
         Pager adapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setOnPageChangeListener(this);
         viewPager.setAdapter(adapter);
     }
 
     private void tabLayoutBind() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        TextView toolbar_title = (TextView) findViewById(R.id.toolbar_title);
-        toolbar_title.setText("탐지시스템");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -71,12 +77,40 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     }
 
+    private void fabBind() {
+        // fab Bind
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab3 = (FloatingActionButton) findViewById(R.id.fab3);
+    }
+
+
+    private List<SelectMemberModel> getUserInformation() {
+
+        List<SelectMemberModel> userList = new ArrayList<>();
+        userList.add(new SelectMemberModel(false,"123"));
+        return userList;
+    }
+
     private void floatingButtonBind() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab3 = (FloatingActionButton) findViewById(R.id.fab3);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("Float", "float");
+
+            }
+        });
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean wrapInScrollView = true;
+                new MaterialDialog.Builder(view.getContext())
+                        .title("123")
+                        .customView(R.layout.fragment_first, wrapInScrollView)
+                        .positiveText("123")
+                        .show();
+                Snackbar.make(layout, "Hello World", Snackbar.LENGTH_LONG).show();
             }
         });
     }
@@ -84,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition());
+        animateFab(tab.getPosition());
     }
 
     @Override
@@ -102,5 +137,41 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             finish();
         }
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    private void animateFab(int position) {
+        switch (position) {
+            case 0:
+                fab.show();
+                fab2.hide();
+                fab3.hide();
+                break;
+            case 1:
+                fab.hide();
+                fab2.hide();
+                fab3.hide();
+                break;
+            case 2:
+                fab3.show();
+                fab.hide();
+                fab2.hide();
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+    @Override
+    public void onPageSelected(int position) {
+        animateFab(position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
