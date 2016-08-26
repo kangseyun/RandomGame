@@ -16,8 +16,12 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.seyun.healthtrainer.Adapter.BookmarkAdapter;
 import com.seyun.healthtrainer.Adapter.SelectMemeberAdapter;
+import com.seyun.healthtrainer.Database.Bookmark;
+import com.seyun.healthtrainer.Database.RealmString;
 import com.seyun.healthtrainer.Database.User;
+import com.seyun.healthtrainer.Model.BookMarkModel;
 import com.seyun.healthtrainer.Model.SelectMemberModel;
 import com.seyun.healthtrainer.R;
 
@@ -26,23 +30,27 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 public class MemberSelectActivity extends AppCompatActivity implements View.OnClickListener {
-    private RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView, mRecyclerView2;
     private SelectMemeberAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private BookmarkAdapter mBookAdapter;
+    private RecyclerView.LayoutManager mLayoutManager, mLayoutManager2;
     private Button insert, save, start, load;
     private EditText name;
     private CoordinatorLayout layout;
     private User user;
     private Realm realm;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_select);
+        RealmConfiguration realmConfig = new RealmConfiguration.Builder(getApplication()).build();
+        Realm.setDefaultConfiguration(realmConfig);
+        realm = Realm.getDefaultInstance();
         init();
     }
 
@@ -77,14 +85,17 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
     private void recyclerViewBind() {
         mRecyclerView = (RecyclerView) this.findViewById(R.id.member_select_rv);
         mRecyclerView.setHasFixedSize(false);
+        mRecyclerView2 = (RecyclerView) this.findViewById(R.id.bookmark_layout);
+        mRecyclerView2.setHasFixedSize(false);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mLayoutManager2 = new LinearLayoutManager(this);
 
+        mBookAdapter = new BookmarkAdapter(getUserInformation2(), this);
+        mRecyclerView2.setAdapter(mBookAdapter);
         mAdapter = new SelectMemeberAdapter(getUserInformation(), this);
         mRecyclerView.setAdapter(mAdapter);
-
-
     }
 
     private List<SelectMemberModel> getUserInformation() {
@@ -92,6 +103,13 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
         List<SelectMemberModel> userList = new ArrayList<>();
         return userList;
     }
+
+    private List<BookMarkModel> getUserInformation2() {
+
+        List<BookMarkModel> userList = new ArrayList<>();
+        return userList;
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -150,23 +168,49 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
                 .input(null, null, new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, final CharSequence input) {
+                        final ArrayList<String> list = mAdapter.getUserList();
+                        if (list.size() == 0) { // 항목이 존재 하지 않을경우 실패처리
+                            Snackbar.make(layout, "[실패] 항목이 하나 이상 존재해야합니다.", Snackbar.LENGTH_LONG).show();
+                        } else {
+                            realm.executeTransaction(new Realm.Transaction() {
+                                @Override
+                                public void execute(Realm realm) {
+                                    Bookmark bookmark = realm.createObject(Bookmark.class);
+                                    bookmark.setTitle(input.toString());
+                                    for (int i = 0; i < list.size(); i++) {
+                                        RealmString string = realm.createObject(RealmString.class);
+                                        string.setName(list.get(i));
+                                        bookmark.name.add(string);
+                                    }
+                                }
+                            });
+                            Snackbar.make(layout, "즐겨찾기 추가완료", Snackbar.LENGTH_LONG).show();
+                        }
                     }
                 })
                 .show();
     }
 
     private void clickLoadBtn() {
+        RealmResults<Bookmark> result = realm.where(Bookmark.class).findAll();
+        mBookAdapter.dataLoad(result);
         new MaterialDialog.Builder(this)
                 .title("즐겨찾기 목록")
                 .content("불러오실 즐겨찾기 항목을 체크해주세요")
                 .negativeText(android.R.string.cancel)
                 .positiveText(android.R.string.ok)
-                .adapter(mAdapter, null)
+                .adapter(mBookAdapter, null)
                 .show();
     }
 
     private void clickInsertBtn() {
-        mAdapter.add(new SelectMemberModel(false, name.getText().toString()),0);
+        mAdapter.add(new SelectMemberModel(true, name.getText().toString()),0);
         name.setText(null);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 }
