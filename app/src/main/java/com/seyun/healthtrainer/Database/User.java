@@ -9,9 +9,7 @@ import io.realm.annotations.Ignore;
  */
 public class User extends RealmObject {
     private String          name;
-    RealmList<RealmString> names;
 
     public String getName() { return name; }
     public void   setName(String name) { this.name = name; }
-
 }

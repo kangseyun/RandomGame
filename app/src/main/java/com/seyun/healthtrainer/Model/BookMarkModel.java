@@ -14,6 +14,11 @@ public class BookMarkModel {
         return check;
     }
 
+    public void setCheck(boolean check) {
+        this.check = check == true ? false: true;
+    }
+
+
     public BookMarkModel(boolean check, String name) {
         this.check = check;
         this.name = name;

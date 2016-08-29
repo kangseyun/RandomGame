@@ -2,6 +2,7 @@ package com.seyun.healthtrainer.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import com.seyun.healthtrainer.Database.Bookmark;
 import com.seyun.healthtrainer.Model.BookMarkModel;
 import com.seyun.healthtrainer.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.RealmResults;
@@ -33,21 +35,36 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkAdapter.UserVi
 
     @Override
     public void onBindViewHolder(UserViewHolder holder, int position) {
-        BookMarkModel user = userList.get(position);
+        final BookMarkModel user = userList.get(position);
         holder.check.setChecked(false);
         holder.name.setText(user.getName());
+        holder.check.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                user.setCheck(user.getCheck());
+            }
+        });
     }
 
     public void add(BookMarkModel item, int position) {
         userList.add(position, item);
         notifyItemInserted(position);
     }
+
     public void dataLoad(RealmResults<Bookmark> result) {
         userList.clear();
         for(int i=0;i<result.size();i++) {
             userList.add(new BookMarkModel(false, result.get(i).getTitle()));
         }
         notifyDataSetChanged();
+    }
+
+    public ArrayList<String> userLoad() {
+        ArrayList<String> title = new ArrayList<>();
+        for(int i=0;i<userList.size();i++){
+           if(userList.get(i).getCheck() == true)
+               title.add(userList.get(i).getName());
+        }
+        return title;
     }
 
     @Override

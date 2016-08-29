@@ -8,7 +8,7 @@ import io.realm.RealmObject;
  */
 public class Party extends RealmObject {
     private String              title;
-    public RealmList<Bookmark>  name;
+    public RealmList<User>  name;
 
     public String getTitle() { return title; }
     public void   setTitle(String title) { this.title = title; }
