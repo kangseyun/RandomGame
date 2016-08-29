@@ -172,6 +172,7 @@ public class MemberSelectActivity extends AppCompatActivity implements View.OnCl
                             });
 
                             Intent i = new Intent(MemberSelectActivity.this, MainActivity.class);
+                            i.putExtra("title", name);
                             startActivity(i);
                             finish();
                         }

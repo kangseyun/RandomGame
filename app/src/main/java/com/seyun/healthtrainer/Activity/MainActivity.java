@@ -1,5 +1,6 @@
 package com.seyun.healthtrainer.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.seyun.healthtrainer.Adapter.Pager;
@@ -23,6 +25,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener, ViewPager.OnPageChangeListener{
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    private TextView title;
     private FloatingActionButton fab, fab2, fab3;
     private CoordinatorLayout layout;
 
@@ -62,6 +65,14 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        setTitle();
+    }
+
+    private void setTitle() {
+        Intent i = getIntent();
+        String get_title = i.getExtras().getString("title");
+        title = (TextView) findViewById(R.id.toolbar_title);
+        title.setText(get_title);
     }
 
     private void setupTabs() {
